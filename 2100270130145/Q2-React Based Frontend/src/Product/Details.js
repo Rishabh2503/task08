@@ -1,8 +1,12 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-const ProductDETails = ({ products }) => {
-  const { productId } = useParams(); 
+const ProductDetails = ({ products }) => {
+  const { productId } = useParams();
+
+  console.log('products:', products);
+  console.log('productId:', productId);
+
   const product = products.find(p => p.id === productId);
 
   if (!product) {
@@ -31,4 +35,4 @@ const ProductDETails = ({ products }) => {
   );
 };
 
-export default ProductDETails;
+export default ProductDetails;
