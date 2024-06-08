@@ -1,29 +1,30 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const Product = ({ products }) => {
-  return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4">
-      {products.map((product, index) => (
-        <div
-          key={index}
-          className="bg-white rounded-lg shadow-md overflow-hidden transition duration-300 ease-in-out hover:shadow-lg"
-        >
+const Product = ({ products }) => (
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    {products.map((product, index) => (
+      <Link to={`/product/${product.id}`} key={index}>
+        <div className="bg-gradient-to-br from-gray-200 to-gray-400 rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105">
           <div className="p-4">
-            <h2 className="text-lg font-semibold mb-2">{product.productName}</h2>
-            <p className="text-gray-700 mb-1">Price: ${product.price}</p>
-            <p className="text-gray-700 mb-1">Rating: {product.rating}</p>
-            <p className="text-gray-700 mb-1">Discount: {product.discount}%</p>
-            <p className="text-gray-700 mb-1">Availability: {product.availability}</p>
-          </div>
-          <div className="bg-gray-200 p-4">
-            <button className="bg-indigo-500 text-white py-2 px-4 rounded-md hover:bg-indigo-600 transition duration-300 ease-in-out">
-              Add to Cart
-            </button>
+            <h3 className="text-lg font-semibold mb-2">{product.productName}</h3>
+            <p className="text-gray-700">
+              Price: <span className="font-bold">${product.price}</span>
+            </p>
+            <p className="text-gray-700">
+              Rating: <span className="font-bold">{product.rating}</span>
+            </p>
+            <p className="text-gray-700">
+              Discount: <span className="font-bold">{product.discount}%</span>
+            </p>
+            <p className={`font-bold ${product.availability === 'yes' ? 'text-green-600' : 'text-red-600'}`}>
+              Availability: <span>{product.availability}</span>
+            </p>
           </div>
         </div>
-      ))}
-    </div>
-  );
-};
+      </Link>
+    ))}
+  </div>
+);
 
 export default Product;
